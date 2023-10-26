@@ -1,67 +1,55 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Multi-Guard REST API Project Design Pattern**
 
-## About Laravel
+**Project Overview:**
+This REST API project is built using Laravel and Sanctum, catering to three types of users: User, Admin, and Agent. The primary functionalities include user registration, user authentication, and product management. User registration is validated, and upon successful registration, a token is generated. For login, tokens are created. The project includes routes that are protected to provide access to authorized users.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Design Pattern Components:**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. **User Registration:**
+   - Users can register by providing necessary details, including name, email, and password.
+   - Input data is validated to ensure it meets required criteria (e.g., valid email, strong password).
+   - If validation is successful, a new user is created, and a token is generated.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2. **User Authentication:**
+   - Users, admins, and agents can log in using email and password through their respective login routes.
+   - Upon successful login, a token is generated, allowing them to access protected routes.
 
-## Learning Laravel
+3. **API Tokens:**
+   - Tokens are utilized for user authentication and authorization.
+   - Each user type (User, Admin, Agent) has its own set of tokens to maintain individual access control.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+4. **Protected Routes:**
+   - Certain routes are protected to ensure only authorized users can access them.
+   - Middleware is employed to verify the user's identity and role before granting access.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+5. **User, Admin, and Agent Roles:**
+   - The application assigns different roles to users (User), administrators (Admin), and agents (Agent).
+   - Role-based access control is implemented to manage who can perform specific actions.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Technology Stack:**
+- Laravel Framework: Laravel provides a robust foundation for building the REST API.
+- Sanctum: Utilize Laravel Sanctum for API authentication and token management.
+- MySQL Database: Store user information and product data in a MySQL database.
+- Validation: Implement validation rules to ensure data integrity.
+- Middleware: Create custom middleware to manage role-based access control.
+- RESTful Routes: Define RESTful routes for user registration, login, and product management.
+- Git and GitHub: Employ version control for tracking code changes and collaborative development.
 
-## Laravel Sponsors
+**Design Patterns:**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+1. **Role-Based Authentication:** Implement role-based authentication and authorization to control user access to specific endpoints.
 
-### Premium Partners
+2. **RESTful API Design:** Follow RESTful principles for designing API endpoints that adhere to HTTP verbs and status codes.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3. **API Token Management:** Use Laravel Sanctum for token creation, validation, and revocation.
 
-## Contributing
+4. **Middleware for Authorization:** Develop custom middleware for verifying user roles and permissions.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# laravel-RESTAPI
+**Workflow:**
+- Users, Admins, and Agents can register through separate routes and provide required information.
+- User registration data is validated, and upon successful validation, a user is created, and a token is generated.
+- Users, Admins, and Agents can log in by providing their credentials.
+- Upon successful login, a token is generated based on the user's role (User, Admin, Agent).
+- Token authentication is used to access protected routes.
+- Middleware checks user roles and authorizes or denies access to specific actions.
