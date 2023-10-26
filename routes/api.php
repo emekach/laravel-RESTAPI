@@ -1,16 +1,27 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AgentController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-// Registeration and login controller
+// Registeration and login controller for admin
 
 Route::post('admin/register', [AdminController::class, 'register']);
 
 Route::post('admin/login', [AdminController::class, 'login']);
+
+
+// Registeration and login controller for agent
+
+Route::prefix('agent')->group(function () {
+
+    Route::post('register', [AgentController::class, 'register']);
+
+    Route::post('login', [AgentController::class, 'login']);
+});
 
 // protected routes for only logged in admin users
 

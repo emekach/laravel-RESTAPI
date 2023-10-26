@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class Agent
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
 
+        if (!Auth::guard('agent')->check()) {
 
-
-        if (!Auth::guard('admin')->check()) {
             return response()->json([
-                'message' => 'You are not not authorised to access the admin route'
+                'message' => 'You are not not authorised to access the agents route'
             ], 401);
         }
         return $next($request);

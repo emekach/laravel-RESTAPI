@@ -44,6 +44,10 @@ return [
             'driver' => 'sanctum', // Use Sanctum for the "admin" guard
             'provider' => 'admins', // Use the "admins" provider
         ],
+        'agent' => [
+            'driver' => 'sanctum', // Use Sanctum for the "admin" guard
+            'provider' => 'agents', // Use the "admins" provider
+        ],
     ],
 
     /*
@@ -72,6 +76,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
         ],
+        'agents' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Agent::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -107,6 +116,12 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'agents' => [
+            'provider' => 'agents',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
