@@ -4,6 +4,8 @@
 **Project Overview:**
 This REST API project is built using Laravel and Sanctum, catering to three types of users: User, Admin, and Agent. The primary functionalities include user registration, user authentication, and product management. User registration is validated, and upon successful registration, a token is generated. For login, tokens are created. The project includes routes that are protected to provide access to authorized users.
 
+watch demo - https://youtu.be/XdUput3iDVg
+
 **Design Pattern Components:**
 
 1. **User Registration:**
