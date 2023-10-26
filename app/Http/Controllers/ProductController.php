@@ -14,7 +14,7 @@ class ProductController extends Controller
 
         if (!$products) {
             return response()->json([
-                'error' => 'No products available'
+                'message' => 'No products available'
             ]);
         }
 
@@ -28,7 +28,7 @@ class ProductController extends Controller
 
         if (!$products) {
             return response()->json([
-                'error' => 'Product not found'
+                'message' => 'Product not found'
             ], 404);
         }
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         if (!$product) {
             return response()->json([
-                'error' => 'No Product with id found'
+                'message' => 'No Product with id found'
             ], 404);
         }
 
@@ -85,6 +85,23 @@ class ProductController extends Controller
 
         return response()->json([
             'message' => 'Products Updated Successfully'
+        ], 200);
+    } // End Method
+
+    public function destroy(int $id)
+    {
+
+        $product = Product::find($id);
+
+        if (!$product) {
+            return response()->json([
+                'error' => "No product id found"
+            ]);
+        }
+        $product->delete();
+
+        return response()->json([
+            'message' => "Product deleted successfully"
         ], 200);
     }
 }
